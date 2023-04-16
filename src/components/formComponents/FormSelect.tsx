@@ -52,6 +52,7 @@ const FormSelect: React.FC<IFormSelectProps> = ({
         onChange={handleChange}
         onBlur={handleBlur}
         options={options}
+        className="react-select"
         // styles
         styles={{
           container: (base) => ({
@@ -80,8 +81,6 @@ const FormSelect: React.FC<IFormSelectProps> = ({
               border: `1px solid ${theme.colors.primary}`,
             },
           }),
-          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-          menu: (base) => ({ ...base, zIndex: 9999 }),
           valueContainer: (base) => ({
             ...base,
             paddingLeft: "20px",
@@ -91,10 +90,13 @@ const FormSelect: React.FC<IFormSelectProps> = ({
             fontSize: ".875rem",
             fontWeight: "500",
           }),
+          menu: (styles, {}) => ({
+            ...styles,
+            zIndex: 9999,
+            position: "relative",
+          }),
         }}
         {...selectProps}
-        menuPosition="fixed"
-        menuPortalTarget={document.body}
       />
       {children}
     </FromWrapper>
